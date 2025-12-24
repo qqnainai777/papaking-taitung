@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
+    <!-- 📊 Google tag (gtag.js) - 已整合您的 ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7CYXR0249"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K7CYXR0249');
+    </script>
+
     <!-- 🟢 關鍵修復：強制關閉 Referrer，解決手機無法讀取 Google Drive 圖片問題 -->
     <meta name="referrer" content="no-referrer">
     
@@ -23,6 +33,27 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_TW">
 
+    <!-- ✨ 結構化資料 (JSON-LD) ✨ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "炮炮王 - 台東外約首選",
+      "image": "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200",
+      "@id": "https://yuyucarsale.pages.dev/",
+      "url": "https://yuyucarsale.pages.dev/",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Taitung City",
+        "addressRegion": "Taitung County",
+        "addressCountry": "TW"
+      },
+      "priceRange": "$$",
+      "description": "提供台東地區最優質的約會、外約與專屬陪伴服務，價格透明，照片真實。"
+    }
+    </script>
+
     <!-- 樣式庫 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -31,6 +62,11 @@
 
     <style>
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #1a1a1a; color: #fff; -webkit-tap-highlight-color: transparent; }
+        
+        /* 導航 */
+        nav { background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(10px); }
+
+        /* 卡片設計 */
         .profile-card { transition: transform 0.3s ease; background-color: #2d2d2d; }
         .profile-card:active { transform: scale(0.98); }
         .line-btn { background-color: #06C755; }
@@ -54,7 +90,7 @@
             max-height: 80vh; 
         }
 
-        /* 🟢 影片容器設定 */
+        /* 影片容器設定 */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -202,7 +238,7 @@
         // 👇 設定區 👇
         // ==========================================
         const myLineId = "你的LINE_ID"; 
-        const googleSheetCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnvM52ixrMGKzLTMMleErStxnyRpFlsPuMUlSc2HdNwIbJhgPrz_eDe7xMgbZv4acLBPK5u9JS6r20/pub?gid=1682452717&single=true&output=csv"; 
+        const googleSheetCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW84-IvZePFDIcy4XR6CW2S-VfPS9V1gG45dmW4tptn1-QPR0M8kl6LugMg9146_R69BwaHbqMvvbg/pub?gid=1652145973&single=true&output=csv"; 
         // ==========================================
 
         let profilesData = [];
@@ -214,6 +250,7 @@
         
         document.getElementById('navLineBtn').href = `https://line.me/ti/p/~${myLineId}`;
 
+        // 智慧欄位讀取
         function getValue(item, keys) {
             const allKeys = Object.keys(item);
             for (let targetKey of keys) {
@@ -223,7 +260,7 @@
             return "";
         }
 
-        // 🟢 強力 ID 提取 (修復影片讀取)
+        // 強力 ID 提取
         function getDriveId(url) {
             if (!url) return null;
             // 處理 #video
