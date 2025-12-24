@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- 📊 Google tag (gtag.js) - 已整合您的 ID -->
+    <!-- 📊 Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7CYXR0249"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -337,6 +337,9 @@
                 const body = getValue(item, ['車身', 'Body', 'body', '身材']) || "--";
                 const origin = getValue(item, ['車籍', 'Origin', '國籍', '產地', '地點']) || "台東"; 
                 const price = getValue(item, ['車價', 'Price', 'price', '價格']) || "0";
+                const extra = getValue(item, ['加節', 'Extra', '加價']) || "500";
+                // 🟢 新增：可提供服務欄位
+                const services = getValue(item, ['額外服務', '服務', 'Service', '可提供服務', '內容']) || "無特殊服務";
                 
                 const rawMainImg = getValue(item, ['MainImage', 'Image', 'image', '照片', '圖片', '上傳']);
                 const firstImg = rawMainImg ? rawMainImg.split(',')[0].trim() : "";
@@ -397,6 +400,15 @@
                                 <div class="flex justify-between items-center mb-1">
                                     <span class="text-gray-400 text-sm">基本方案</span>
                                     <span class="text-xl font-bold text-yellow-400">$${price} <span class="text-xs text-gray-500 font-normal">/ 40分鐘</span></span>
+                                </div>
+                                <div class="flex justify-between items-center text-xs border-t border-gray-800 pt-1 mt-1">
+                                    <span class="text-gray-500">加節費用</span>
+                                    <span class="text-gray-400">+$${extra}</span>
+                                </div>
+                                <!-- 🟢 新增：可提供服務欄位 -->
+                                <div class="mt-2 pt-2 border-t border-gray-800">
+                                    <span class="text-gray-400 text-xs block mb-1">可提供服務：</span>
+                                    <span class="text-gray-200 text-sm font-medium">${services}</span>
                                 </div>
                             </div>
                             <a href="${lineUrl}" target="_blank" onclick="event.stopPropagation()" class="line-btn w-full text-white font-black text-lg py-3 rounded-lg flex justify-center items-center shadow-lg hover:shadow-green-500/50 transition">
